@@ -11,6 +11,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -68,11 +69,35 @@ public class ClienteFacadeREST extends AbstractFacade<Cliente> {
     public List<Cliente> findAll() {
         return super.findAll();
     }
-    @POST
-    @ Path("crear")
+     @POST
+    @Path("crear")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public String crear("idcliente") int idcliente
-    
+     public String crear (@FormParam ("idCliente") int idCliente, @FormParam ("nombre") String nombre, @FormParam ("apellido") String apellido, @FormParam ("cedula") String cedula, @FormParam ("direccion") String direccion, @FormParam ("edad") String edad, @FormParam ("provincia") String provincia, @FormParam ("vehiculoCompro") String vehiculoCompro){
+      Cliente cr = super.find(idCliente);
+      cr.setNombre(nombre);
+      cr.setApellido(apellido);
+      cr.setCedula(cedula);
+      cr.setDireccion(direccion);
+      cr.setEdad(edad);
+      cr.setProvincia(provincia);
+      super.edit(cr);
+      return"se actualizo";
+     }
+      @POST
+    @Path("editar")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+     public String editar (@FormParam ("idCliente") int idCliente, @FormParam ("nombre") String nombre, @FormParam ("apellido") String apellido, @FormParam ("cedula") String cedula, @FormParam ("direccion") String direccion, @FormParam ("edad") String edad, @FormParam ("provincia") String provincia, @FormParam ("vehiculoCompro") String vehiculoCompro){
+     Cliente ed = super.find(idCliente);
+     ed.setNombre(nombre);
+     ed.setApellido(apellido);
+     ed.setCedula(cedula);
+     ed.setDireccion(direccion);
+     ed.setEdad(edad);
+     ed.setProvincia(provincia);
+     super.edit(ed);
+     return"se edito con normalidad";
+     }
+      
     
         
     @GET
