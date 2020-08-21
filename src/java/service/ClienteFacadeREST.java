@@ -68,13 +68,22 @@ public class ClienteFacadeREST extends AbstractFacade<Cliente> {
     public List<Cliente> findAll() {
         return super.findAll();
     }
-
+    @POST
+    @ Path("crear")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public String crear("idcliente") int idcliente
+    
+    
+        
     @GET
     @Path("{from}/{to}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Cliente> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }
+    
+    
+    
 
     @GET
     @Path("count")
